@@ -1,6 +1,7 @@
 import math
 from PyPav2 import Pavlok as pav
 from playsound import playsound
+import logging
 
 
 class TEMSError(Exception):
@@ -22,7 +23,7 @@ class PiShock(TEMSDevice):
 
 class Pavlok(TEMSDevice):
     config_options = {
-        "mac_address": ("MAC Address of Pavlok", str),
+        "mac_address": ("MAC Address of Pavlok", str)
     }
 
     def __init__(self, config):
@@ -32,7 +33,8 @@ class Pavlok(TEMSDevice):
         if "mac_address" in self.config:
             self.pav.connect(self.config["mac_address"])
         else:
-            raise TEMSError("Either auto-discover or MAC address must be entered")
+            logging.error("MAC address must be entered.")
+            raise TEMSError("MAC address must be entered")
 
     def shock(self, intensity, duration):
         # from https://github.com/ztrayl3/PyPav2, duration of Pavlok shock seems to be 0.7 seconds
