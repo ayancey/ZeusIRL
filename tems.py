@@ -31,7 +31,7 @@ class PiShock(TEMSDevice):
         self.session = requests.session()
 
     def api(self, intensity, duration, op):
-        self.session.post("https://do.pishock.com/api/apioperate", json={
+        r = self.session.post("https://do.pishock.com/api/apioperate", json={
             "Username": self.config["username"],
             "Name": "ZeusIRL",
             "Code": self.config["code"],
@@ -40,6 +40,7 @@ class PiShock(TEMSDevice):
             "Apikey": self.config["api_key"],
             "Op": op
         })
+        logging.debug(f"pishock: {intensity},{duration},{op}: {r.status_code} {r.text}")
 
     def shock(self, intensity, duration):
         self.api(intensity, duration, "0")
