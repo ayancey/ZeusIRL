@@ -2,6 +2,7 @@ import math
 from PyPav2 import Pavlok as pav
 from playsound import playsound
 import logging
+import requests
 
 
 class TEMSError(Exception):
@@ -19,8 +20,33 @@ class TEMSDevice(object):
 
 
 class PiShock(TEMSDevice):
-    print("test")
-    pass
+    config_options = {
+        "username": ("Username", str),
+        "api_key": ("API Key", str),
+        "code": ("Share Code", str),
+    }
+
+    def __init__(self, config):
+        self.config = config
+        self.session = requests.session()
+
+    def api(self, intensity, duration, op):
+        self.session.post("https://do.pishock.com/api/apioperate", json={
+            "Username": self.config["username"],
+            "Name": "ZeusIRL",
+            "Code": self.config["code"],
+            "Intensity": str(intensity),
+            "Duration": str(duration),
+            "Apikey": self.config["api_key"],
+            "Op": op
+        })
+
+    def shock(self, intensity, duration):
+        self.api(intensity, duration, "0")
+
+    def vibrate(self, intensity, duration):
+        self.api(intensity, duration, "1")
+
 
 class Pavlok(TEMSDevice):
     config_options = {
