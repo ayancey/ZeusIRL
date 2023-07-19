@@ -51,7 +51,11 @@ class CSGOGSEHandler(object):
 
     @staticmethod
     def on_death():
-        print("Player died!")
+        raise NotImplementedError
+
+    @staticmethod
+    def on_hit(self):
+        raise NotImplementedError
 
     def gse_handler(self):
         current_health = request.json.get("player", {}).get("state", {}).get("health", 100)
