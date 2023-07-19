@@ -117,24 +117,24 @@ class PavShockHandler(PavShock):
             with open(Path("config") / "settings.json", encoding="utf-8") as f:
                 options = json.loads(f.read())
 
-        for option in self.options_to_save:
-            option_obj, option_name = option
+            for option in self.options_to_save:
+                option_obj, option_name = option
 
-            if option_name in options:
-                opt_value = options[option_name]
+                if option_name in options:
+                    opt_value = options[option_name]
 
-                if type(option_obj) is wx.CheckBox:
-                    option_obj.SetValue(opt_value)
-                elif type(option_obj) is wx.Choice:
-                    option_obj.Select(option[0].Items.index(opt_value))
-                elif type(option_obj) is wx.Slider:
-                    option_obj.SetValue(opt_value)
-                else:
-                    raise ValueError(f"unhandled type of option {type(option_obj)} to load")
+                    if type(option_obj) is wx.CheckBox:
+                        option_obj.SetValue(opt_value)
+                    elif type(option_obj) is wx.Choice:
+                        option_obj.Select(option[0].Items.index(opt_value))
+                    elif type(option_obj) is wx.Slider:
+                        option_obj.SetValue(opt_value)
+                    else:
+                        raise ValueError(f"unhandled type of option {type(option_obj)} to load")
 
-        self.change_intensity(None)
-        self.change_russian_chance(None)
-        self.change_device(None)
+            self.change_intensity(None)
+            self.change_russian_chance(None)
+            self.change_device(None)
 
     def on_close(self, _):
         self.save_options()
