@@ -5,7 +5,18 @@ from tems import Pavlok, PiShock, TEMSDevice, TEMSError, device_map
 from pathlib import Path
 import json
 import random
+import logging
+import sys
 
+file_handler = logging.FileHandler(filename='log.log', encoding="utf-8")
+stdout_handler = logging.StreamHandler(stream=sys.stdout)
+handlers = [file_handler, stdout_handler]
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s',
+    handlers=handlers
+)
 
 # ZeusMate
 # Zeus2
@@ -58,7 +69,7 @@ class PavShockHandler(PavShock):
             self.connect_button
         ]
 
-    def impulse(self):
+    def impulse(self, reason):
         # If the user has hit start
         if self.armed:
             if self.randomize_intensity_checkbox.IsChecked():
@@ -78,16 +89,18 @@ class PavShockHandler(PavShock):
 
             if shock:
                 self.device.shock(intensity, 1)
+                logging.info(f"Shocked user with intensity {intensity} from {reason}")
             else:
                 self.device.vibrate(intensity, 1)
+                logging.info(f"Vibrated user with intensity {intensity} from {reason}")
 
     def on_death(self):
         if self.shock_on_death_checkbox.IsChecked():
-            self.impulse()
+            self.impulse("death")
 
     def on_hit(self):
         if self.shock_on_hit_checkbox.IsChecked():
-            self.impulse()
+            self.impulse("hit")
 
     def change_intensity(self, event):
         self.max_intensity_label.SetLabel(f"{event.Int}%")
