@@ -30,7 +30,6 @@ def check_gse():
         with open(gse_fname()) as f:
             if f.read() == config:
                 return True
-
     return False
 
 
@@ -54,17 +53,19 @@ class CSGOGSEHandler(object):
         raise NotImplementedError
 
     @staticmethod
-    def on_hit(self):
+    def on_hit():
         raise NotImplementedError
 
     def gse_handler(self):
         current_health = request.json.get("player", {}).get("state", {}).get("health", 100)
         previous_health = request.json.get("previously", {}).get("player", {}).get("state", {}).get("health", 0)
 
-        if current_health == 0:
+        if request.json["provider"]["steamid"] == request.json["player"]["steamid"]:
             if previous_health > current_health:
-                if request.json["provider"]["steamid"] == request.json["player"]["steamid"]:
+                if current_health == 0:
                     self.on_death()
+                else:
+                    self.on_hit()
 
         return '', 204
 
