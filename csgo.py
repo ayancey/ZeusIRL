@@ -9,6 +9,8 @@ config = """"Console Sample v.1"
  "buffer"  "0.0"
  "data"
  {
+   "provider"            "1"
+   "player_id"           "1"
    "player_state"        "1"      // player state for this current round such as health, armor, kills this round, etc.
  }
 }
