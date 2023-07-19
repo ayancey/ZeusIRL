@@ -164,12 +164,9 @@ class PavShockHandler(PavShock):
                     self.device = device_map[self.device_change_dropdown.StringSelection](self.device_config)
                 except TimeoutError:
                     wx.MessageDialog(self, "Failed to connect", style=wx.ICON_ERROR).ShowModal()
+                    logging.error(f"{self.device_change_dropdown.StringSelection} failed to connect")
 
                 self.device.vibrate(50, 1)
-
-                # Save settings after we connect (Pavlok will save the MAC address)
-                self.device_config = self.device.config
-                save_device_config(self.device_change_dropdown.StringSelection, self.device_config)
 
                 self.device_configure_button.Disable()
                 self.device_change_dropdown.Disable()
