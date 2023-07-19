@@ -19,6 +19,7 @@ class TEMSDevice(object):
 
 
 class PiShock(TEMSDevice):
+    print("test")
     pass
 
 class Pavlok(TEMSDevice):
