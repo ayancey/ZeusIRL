@@ -14,7 +14,9 @@ class Pavlok():
 		def bleak_thread(loop):
 			asyncio.set_event_loop(loop)
 			loop.run_forever()
-		Thread(target=bleak_thread, args=(self.e_loop,)).start()
+		t = Thread(target=bleak_thread, args=(self.e_loop,))
+		t.setDaemon(True)
+		t.start()
 
 		# gatttool sends commands by handle, below are all the handles the program has control over so far (more to come!)
 		self.handles = {"vibrate" : 15,
