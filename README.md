@@ -2,7 +2,7 @@
 
 ![image](https://github.com/ayancey/ZeusIRL/assets/10055792/9da3687b-e5f6-4fcb-bdd5-07af8fa568e4)
 
-ZeusIRL controls your TENS device (currently supports Pavlok and PiShock) and shocks you whenever you die in CS:GO. It also has other options. It uses [Game State Integration](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration) and does not interact with the game's memory in any way, making it safe to use. (except for the part where you get zapped)
+ZeusIRL controls your electro-stimulation device (currently supports [Pavlok](https://shop.pavlok.com/pages/pavlok-homepage) and [PiShock](https://pishock.com/#/)) and shocks you whenever you die in CS:GO. It also has other options. It uses [Game State Integration](https://developer.valvesoftware.com/wiki/Counter-Strike:_Global_Offensive_Game_State_Integration) and does not interact with the game's memory in any way, making it safe to use. (except for the part where you get zapped)
 
 # How to Use
 
