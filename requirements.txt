@@ -1,0 +1,4 @@
+playsound
+bleak
+playsound==1.2.2
+pyinstaller
