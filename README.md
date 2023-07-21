@@ -7,7 +7,7 @@ ZeusIRL controls your electro-stimulation device (currently supports [Pavlok](ht
 # How to Use
 
 1. Click "Configure CS:GO Game State Integration", this will make a cfg file in your CS:GO directory which enables ZeusIRL to see when deaths occur. 
-2. Select your device, configure it, and click connect
+2. Select your device, configure it, and click connect (this will vibrate your device so you know the connection was successful)
 3. Play around with the various settings, click Start when you are ready
 4. Stay in Test Mode until you are comfortable
 5. Report bugs when you find them!
