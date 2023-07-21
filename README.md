@@ -15,3 +15,7 @@ ZeusIRL controls your electro-stimulation device (currently supports [Pavlok](ht
 # Get It
 
 Download the [v1.0 release](https://github.com/ayancey/PavlokCSGO/releases/tag/v1.0) and run the EXE or the Python source code.
+
+# Acknowledgements
+
+The reverse-engineering work done in [ztrayl3/PyPav2](https://github.com/ztrayl3/PyPav2) formed the basis for the Pavlok integration. Thank you!
